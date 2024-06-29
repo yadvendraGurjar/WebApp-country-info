@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="upper-data">
+    <div class="weather-data">
+      <h1>Select a Country</h1>
+      <select (change)="onCountryChange($event)">
+        <option value="">-- Select a Country --</option>
+        <option *ngFor="let country of getweatherData" [value]="country.name.common">
+        {{ country.name.common }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="lower-data">
+    <div class="more-info-label"></div>
+        <div *ngIf="selectedCountry">
+          <li *ngFor="let flags of selectedCountry.flags | keyvalue">
+            <ng-container *ngIf="flags.key === 'png'">
+              <img [src]="flags.value" alt="Image">
+            </ng-container>
+          </li>
+          <h2>Information</h2>
+          <p>
+            Capital : 
+            <strong>{{ selectedCountry.capital }}</strong>
+          </p>
+          <p>
+            Area for : 
+            <strong>{{ selectedCountry.area }}</strong>
+          </p>
+          <p>
+            Population : 
+            <strong>{{ selectedCountry.population }}</strong>
+          </p>
+          <p>
+            Currency : 
+            <strong>{{ selectedCountry2.currency}}</strong>
+          </p>
+          <p>
+            Location : 
+            <strong>{{ selectedCountry.region}}</strong>
+          </p>
+            Languages :
+            <ul>
+            <strong>
+              <!-- Use *ngFor to iterate over the 'languages' array and display each language -->
+              <li *ngFor="let language of selectedCountry.languages | keyvalue">
+      
+                {{ language.value }}
+              </li>
+            </strong>
+            </ul>
+        </div>
+  </div>
+</div>
